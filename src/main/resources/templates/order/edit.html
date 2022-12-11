@@ -1,0 +1,17 @@
+<form th:action="@{/updatemedia/{id}(id=${media.id})}"
+	th:object="${media}" method="post">
+
+	<div class="form-group">
+		<label for="exampleInputEmail1">Description</label> <input
+			th:value="${media.title}" name="description" type="text"
+			class="form-control" id="exampleInputEmail1"
+			aria-describedby="emailHelp" placeholder="Enter email">
+	</div>
+	
+	
+
+
+	<button type="submit" class="btn btn-primary">Edit</button>
+
+
+</form>

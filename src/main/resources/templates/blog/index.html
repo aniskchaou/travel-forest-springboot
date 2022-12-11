@@ -1,0 +1,20 @@
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+		  
+			<th>name</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="b:${blogs}">
+		   
+			<td th:text="${b.title}"></td>
+			<td><a type="button" class="btn btn-primary"
+				th:href="@{/media/{id}(id=${m.id}) }"><span
+					class="fa fa-edit"></span>edit</a></td>
+		</tr>
+
+	</tbody>
+</table>
