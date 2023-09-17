@@ -25,6 +25,11 @@ public class SubscriberController {
 	@Autowired
 	private SubscriberService subscriberService;
 
+	@GetMapping("/addsubscriber")
+	public String addd(Model model) {
+		return "subscriber/add";
+	}
+
 	/**
 	 * getCountries
 	 * @param model
@@ -33,8 +38,8 @@ public class SubscriberController {
 	@GetMapping("/subscribers")
 	public String getSubscribers(Model model) {
 		List<Subscriber> countrries = subscriberService.getSubscribers();
-		model.addAttribute("countries", countrries);
-		return "subscriber";
+		model.addAttribute("subscribers", countrries);
+		return "subscriber/index";
 	}
 
 	/**
@@ -46,7 +51,7 @@ public class SubscriberController {
 	@PostMapping("/addsubscriber")
 	public String addSubscriber(Subscriber subscriber, Model model) {
 		subscriberService.save(subscriber);
-		return "redirect:/countries";
+		return "redirect:/subscribers";
 	}
 
 	/**
@@ -61,7 +66,7 @@ public class SubscriberController {
 		Subscriber subscriber = subscriberService.findById(id).get();
 		model.addAttribute("subscriber", subscriber);
 
-		return "editSubscriber";
+		return "subscriber/edit";
 	}
 
 	/**
@@ -78,7 +83,7 @@ public class SubscriberController {
 			Model model) {
 
 		subscriberService.save(subscriber);
-		return "redirect:/countries";
+		return "redirect:/subscribers";
 	}
 
 	/**
@@ -90,6 +95,6 @@ public class SubscriberController {
 	@Transactional
 	public String deleteSubscriber(@PathVariable("id") Long id) {
 		subscriberService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/subscribers";
 	}
 }

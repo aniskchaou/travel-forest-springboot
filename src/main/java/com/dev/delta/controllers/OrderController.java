@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.dev.delta.entities.TravelOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dev.delta.entities.Order;
 import com.dev.delta.services.OrderService;
 
 @Controller
@@ -25,6 +25,11 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
+	@GetMapping("/addorder")
+	public String addd(Model model) {
+		return "order/add";
+	}
+
 	/**
 	 * getCountries
 	 * @param model
@@ -32,21 +37,21 @@ public class OrderController {
 	 */
 	@GetMapping("/orders")
 	public String getCountries(Model model) {
-		List<Order> countrries = orderService.getOrders();
-		model.addAttribute("countries", countrries);
-		return "order";
+		List<TravelOrder> countrries = orderService.getOrders();
+		model.addAttribute("orders", countrries);
+		return "order/index";
 	}
 
 	/**
 	 * addOrder
-	 * @param order
+	 * @param travelOrder
 	 * @param model
 	 * @return
 	 */
 	@PostMapping("/addorder")
-	public String addOrder(Order order, Model model) {
-		orderService.save(order);
-		return "redirect:/countries";
+	public String addOrder(TravelOrder travelOrder, Model model) {
+		orderService.save(travelOrder);
+		return "redirect:/orders";
 	}
 
 	/**
@@ -58,27 +63,27 @@ public class OrderController {
 	@RequestMapping("/order/{id}")
 	public String findById(@PathVariable("id") Long id, Model model) {
 
-		Order order = orderService.findById(id).get();
-		model.addAttribute("order", order);
+		TravelOrder travelOrder = orderService.findById(id).get();
+		model.addAttribute("media", travelOrder);
 
-		return "editOrder";
+		return "order/edit";
 	}
 
 	/**
 	 * updateOrder
 	 * @param id
-	 * @param order
+	 * @param travelOrder
 	 * @param result
 	 * @param model
 	 * @return
 	 */
 	@PostMapping("/updateorder/{id}")
-	public String updateOrder(@PathVariable("id") long id, @Validated Order order, BindingResult
+	public String updateOrder(@PathVariable("id") long id, @Validated TravelOrder travelOrder, BindingResult
 	result,
-			Model model) {
+							  Model model) {
 
-		orderService.save(order);
-		return "redirect:/countries";
+		orderService.save(travelOrder);
+		return "redirect:/orders";
 	}
 
 	/**
@@ -90,6 +95,6 @@ public class OrderController {
 	@Transactional
 	public String deleteOrder(@PathVariable("id") Long id) {
 		orderService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/orders";
 	}
 }

@@ -1,9 +1,8 @@
 package com.dev.delta.repositories;
 
+import com.dev.delta.entities.TravelOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.dev.delta.entities.Order;
-
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface OrderRepository extends JpaRepository<TravelOrder, Long> {
 
 }

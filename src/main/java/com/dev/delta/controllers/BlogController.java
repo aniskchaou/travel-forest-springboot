@@ -26,6 +26,11 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 
+	@GetMapping("/addblog")
+	public String addd(Model model) {
+		return "blog/add";
+	}
+
 	/**
 	 * getCountries
 	 * @param model
@@ -34,8 +39,8 @@ public class BlogController {
 	@GetMapping("/blogs")
 	public String getCountries(Model model) {
 		List<Blog> countrries = blogService.getBlogs();
-		model.addAttribute("countries", countrries);
-		return "blog";
+		model.addAttribute("blogs", countrries);
+		return "blog/index";
 	}
 
 	/**
@@ -47,7 +52,7 @@ public class BlogController {
 	@PostMapping("/addblog")
 	public String addBlog(Blog blog, Model model) {
 		blogService.save(blog);
-		return "redirect:/countries";
+		return "redirect:/blogs";
 	}
 
 	/**
@@ -62,7 +67,7 @@ public class BlogController {
 		Blog blog = blogService.findById(id).get();
 		model.addAttribute("blog", blog);
 
-		return "editBlog";
+		return "blog/edit";
 	}
 
 	/**
@@ -79,7 +84,7 @@ public class BlogController {
 			Model model) {
 
 		blogService.save(blog);
-		return "redirect:/countries";
+		return "redirect:/blogs";
 	}
 
 	/**
@@ -91,6 +96,6 @@ public class BlogController {
 	@Transactional
 	public String deleteBlog(@PathVariable("id") Long id) {
 		blogService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/blogs";
 	}
 }

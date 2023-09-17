@@ -33,8 +33,13 @@ public class TravellerController {
 	@GetMapping("/travellers")
 	public String getCountries(Model model) {
 		List<Traveller> countrries = travellerService.getTravellers();
-		model.addAttribute("countries", countrries);
-		return "traveller";
+		model.addAttribute("travellers", countrries);
+		return "traveller/index";
+	}
+
+	@GetMapping("/addtraveller")
+	public String addd(Model model) {
+		return "traveller/add";
 	}
 
 	/**
@@ -46,7 +51,7 @@ public class TravellerController {
 	@PostMapping("/addtraveller")
 	public String addTraveller(Traveller traveller, Model model) {
 		travellerService.save(traveller);
-		return "redirect:/countries";
+		return "redirect:/travellers";
 	}
 
 	/**
@@ -59,9 +64,9 @@ public class TravellerController {
 	public String findById(@PathVariable("id") Long id, Model model) {
 
 		Traveller traveller = travellerService.findById(id).get();
-		model.addAttribute("traveller", traveller);
+		model.addAttribute("media", traveller);
 
-		return "editTraveller";
+		return "traveller/edit";
 	}
 
 	/**
@@ -78,7 +83,7 @@ public class TravellerController {
 			Model model) {
 
 		travellerService.save(traveller);
-		return "redirect:/countries";
+		return "redirect:/travellers";
 	}
 
 	/**
@@ -90,6 +95,6 @@ public class TravellerController {
 	@Transactional
 	public String deleteTraveller(@PathVariable("id") Long id) {
 		travellerService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/travellers";
 	}
 }

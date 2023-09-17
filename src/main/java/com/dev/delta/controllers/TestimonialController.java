@@ -25,6 +25,11 @@ public class TestimonialController {
 	@Autowired
 	private TestemonialService testimonialService;
 
+	@GetMapping("/addtestimonial")
+	public String addd(Model model) {
+		return "testimonial/add";
+	}
+
 	/**
 	 * getCountries
 	 * @param model
@@ -33,8 +38,8 @@ public class TestimonialController {
 	@GetMapping("/testimonials")
 	public String getCountries(Model model) {
 		List<Testemonial> countrries = testimonialService.getTestimonials();
-		model.addAttribute("countries", countrries);
-		return "testimonial";
+		model.addAttribute("testimonials", countrries);
+		return "testimonial/index";
 	}
 
 	/**
@@ -46,7 +51,7 @@ public class TestimonialController {
 	@PostMapping("/addtestimonial")
 	public String addTestimonial(Testemonial testimonial, Model model) {
 		testimonialService.save(testimonial);
-		return "redirect:/countries";
+		return "redirect:/testimonials";
 	}
 
 	/**
@@ -61,7 +66,7 @@ public class TestimonialController {
 		Testemonial testimonial = testimonialService.findById(id).get();
 		model.addAttribute("testimonial", testimonial);
 
-		return "editTestimonial";
+		return "testimonial/edit";
 	}
 
 	/**
@@ -78,7 +83,7 @@ public class TestimonialController {
 			Model model) {
 
 		testimonialService.save(testimonial);
-		return "redirect:/countries";
+		return "redirect:/testimonials";
 	}
 
 	/**
@@ -90,6 +95,6 @@ public class TestimonialController {
 	@Transactional
 	public String deleteTestimonial(@PathVariable("id") Long id) {
 		testimonialService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/testimonials";
 	}
 }

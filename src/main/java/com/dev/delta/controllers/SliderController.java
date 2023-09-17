@@ -30,11 +30,11 @@ public class SliderController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/countries")
+	@GetMapping("/sliders")
 	public String getCountries(Model model) {
 		List<Slider> countrries = sliderService.getSliders();
 		model.addAttribute("countries", countrries);
-		return "slider";
+		return "slider/index";
 	}
 
 	/**

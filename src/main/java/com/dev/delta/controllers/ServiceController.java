@@ -27,16 +27,21 @@ public class ServiceController {
 	@Autowired
 	private ServiceService serviceService;
 
+	@GetMapping("/addservice")
+	public String addd(Model model) {
+		return "service/add";
+	}
+
 	/**
 	 * getCountries
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/services")
+	@GetMapping("/servicess")
 	public String getCountries(Model model) {
 		List<Service> countrries = serviceService.getServices();
-		model.addAttribute("countries", countrries);
-		return "service";
+		model.addAttribute("services", countrries);
+		return "service/index";
 	}
 
 	/**
@@ -48,7 +53,7 @@ public class ServiceController {
 	@PostMapping("/addservice")
 	public String addService(Service service, Model model) {
 		serviceService.save(service);
-		return "redirect:/countries";
+		return "redirect:/servicess";
 	}
 
 	/**
@@ -61,9 +66,9 @@ public class ServiceController {
 	public String findById(@PathVariable("id") Long id, Model model) {
 
 		Service service = serviceService.findById(id).get();
-		model.addAttribute("service", service);
+		model.addAttribute("media", service);
 
-		return "editService";
+		return "service/edit";
 	}
 
 	/**
@@ -80,7 +85,7 @@ public class ServiceController {
 			Model model) {
 
 		serviceService.save(service);
-		return "redirect:/countries";
+		return "redirect:/servicess";
 	}
 
 	/**
@@ -92,6 +97,6 @@ public class ServiceController {
 	@Transactional
 	public String deleteService(@PathVariable("id") Long id) {
 		serviceService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/servicess";
 	}
 }

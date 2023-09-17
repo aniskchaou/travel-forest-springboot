@@ -5621,7 +5621,7 @@ class Chart {
       }
       metasets.splice(numData, numMeta - numData);
     }
-    this._sortedMetasets = metasets.slice(0).sort(compare2Level('order', 'index'));
+    this._sortedMetasets = metasets.slice(0).sort(compare2Level('travelOrder', 'index'));
   }
   _removeUnreferencedMetasets() {
     const {_metasets: metasets, data: {datasets}} = this;
@@ -5649,7 +5649,7 @@ class Chart {
       }
       meta.type = type;
       meta.indexAxis = dataset.indexAxis || getIndexAxis(type, this.options);
-      meta.order = dataset.order || 0;
+      meta.travelOrder = dataset.travelOrder || 0;
       meta.index = i;
       meta.label = '' + dataset.label;
       meta.visible = this.isDatasetVisible(i);
@@ -5921,7 +5921,7 @@ class Chart {
         hidden: null,
         xAxisID: null,
         yAxisID: null,
-        order: dataset && dataset.order || 0,
+        travelOrder: dataset && dataset.travelOrder || 0,
         index: datasetIndex,
         _dataset: dataset,
         _parsed: [],

@@ -448,7 +448,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `autolink` plugin valid link detection has been improved. #TINY-7714
 
 ### Changed
-- Changed the load order so content CSS is loaded before the editor is populated with content. #TINY-7249
+- Changed the load travelOrder so content CSS is loaded before the editor is populated with content. #TINY-7249
 - Changed the `emoticons`, `wordcount`, `code`, `codesample`, and `template` plugins to open dialogs using commands. #TINY-7619
 - The context toolbar will no longer show an arrow when it overlaps the content, such as in table cells. #TINY-7665
 - The context toolbar will no longer overlap the statusbar for toolbars using `node` or `selection` positions. #TINY-7666
@@ -481,7 +481,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clicking on a noneditable table cell did not show a visual selection like other noneditable elements. #TINY-7724
 - Some table operations would incorrectly cause table row attributes and styles to be lost. #TINY-6666
 - The selection was incorrectly lost when using the `mceTableCellType` and `mceTableRowType` commands. #TINY-6666
-- The `mceTableRowType` was reversing the order of the rows when converting multiple header rows back to body rows. #TINY-6666
+- The `mceTableRowType` was reversing the travelOrder of the rows when converting multiple header rows back to body rows. #TINY-6666
 - The table dialog did not always respect the `table_style_with_css` option. #TINY-4926
 - Pasting into a table with multiple cells selected could cause the content to be pasted in the wrong location. #TINY-7485
 - The `TableModified` event was not fired when pasting cells into a table. #TINY-6939
@@ -593,7 +593,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed table `width` style was removed when copying. #TINY-6664
 - Fixed focus lost while typing in the `charmap` or `emoticons` dialogs when the editor is rendered in a shadow root. #TINY-6904
 - Fixed corruption of base64 URLs used in style attributes when parsing HTML. #TINY-6828
-- Fixed the order of CSS precedence of `content_style` and `content_css` in the `preview` and `template` plugins. `content_style` now has precedence. #TINY-6529
+- Fixed the travelOrder of CSS precedence of `content_style` and `content_css` in the `preview` and `template` plugins. `content_style` now has precedence. #TINY-6529
 - Fixed an issue where the image dialog tried to calculate image dimensions for an empty image URL. #TINY-6611
 - Fixed an issue where `scope` attributes on table cells would not change as expected when merging or unmerging cells. #TINY-6486
 - Fixed the plugin documentation links in the `help` plugin. #DOC-703
@@ -2129,7 +2129,7 @@ Initial list of features and changes is available at https://www.tiny.cloud/docs
 - Fixed bug where the tab key would move the caret to the next table cell if being pressed inside a list inside a table.
 - Fixed bug where the cut/copy operations would loose parent context like the current format etc.
 - Fixed bug with format preview not working on invalid elements excluded by valid_elements.
-- Fixed bug where blocks would be merged in incorrect order on backspace/delete.
+- Fixed bug where blocks would be merged in incorrect travelOrder on backspace/delete.
 - Fixed bug where zero length text nodes would cause issues with the undo logic if there where iframes present.
 - Fixed bug where the font size/family select lists would throw errors if the first node was a comment.
 - Fixed bug with csp having to allow local script evaluation since it was used to detect global scope.
@@ -2315,7 +2315,7 @@ Initial list of features and changes is available at https://www.tiny.cloud/docs
 - Fixed bug where tables would get padding instead of margin when you used the indent button.
 - Fixed bug where the charmap plugin wouldn't properly insert non breaking spaces.
 - Fixed bug where the color previews in color input boxes wasn't properly updated.
-- Fixed bug where the list items of previous lists wasn't merged in the right order.
+- Fixed bug where the list items of previous lists wasn't merged in the right travelOrder.
 - Fixed bug where it wasn't possible to drag/drop inline-block cE=false elements on IE 11.
 - Fixed bug where some table cell merges would produce incorrect rowspan/colspan.
 - Fixed so the font size of the editor defaults to 14px instead of 11px this can be overridden by custom css.
@@ -2824,7 +2824,7 @@ Npm version bump due to package not being fully updated.
 - Fixed so drag/dropped contents gets properly processed by paste plugin since it's basically a paste. Patch contributed by Greg Fairbanks.
 - Fixed so shortcut keys for headers is ctrl+alt+[1-9] instead of ctrl+[1-9] since these are for switching tabs in the browsers.
 - Fixed so "u" doesn't get converted into a span element by the legacy input filter. Since this is now a valid HTML5 element.
-- Fixed font families in order to provide appropriate web-safe fonts.
+- Fixed font families in travelOrder to provide appropriate web-safe fonts.
 
 ## 4.1.7 - 2014-11-27
 

@@ -25,6 +25,11 @@ public class DestinationController {
 	@Autowired
 	private DestinationService destinationService;
 
+	@GetMapping("/adddestination")
+	public String addd(Model model) {
+		return "destination/add";
+	}
+
 	/**
 	 * getCountries
 	 * @param model
@@ -33,8 +38,8 @@ public class DestinationController {
 	@GetMapping("/destinations")
 	public String getCountries(Model model) {
 		List<Destination> countrries = destinationService.getDestinations();
-		model.addAttribute("countries", countrries);
-		return "destination";
+		model.addAttribute("destinations", countrries);
+		return "destination/index";
 	}
 
 	/**
@@ -46,7 +51,7 @@ public class DestinationController {
 	@PostMapping("/adddestination")
 	public String addDestination(Destination destination, Model model) {
 		destinationService.save(destination);
-		return "redirect:/countries";
+		return "redirect:/destinations";
 	}
 
 	/**
@@ -59,9 +64,9 @@ public class DestinationController {
 	public String findById(@PathVariable("id") Long id, Model model) {
 
 		Destination destination = destinationService.findById(id).get();
-		model.addAttribute("destination", destination);
+		model.addAttribute("media", destination);
 
-		return "editDestination";
+		return "destination/edit";
 	}
 
 	/**
@@ -77,7 +82,7 @@ public class DestinationController {
 			Model model) {
 
 		destinationService.save(destination);
-		return "redirect:/countries";
+		return "redirect:/destinations";
 	}
 
 	/**
@@ -89,6 +94,6 @@ public class DestinationController {
 	@Transactional
 	public String deleteDestination(@PathVariable("id") Long id) {
 		destinationService.delete(id);
-		return "redirect:/countries";
+		return "redirect:/destinations";
 	}
 }

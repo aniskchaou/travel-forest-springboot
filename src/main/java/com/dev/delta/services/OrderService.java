@@ -3,10 +3,10 @@ package com.dev.delta.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.dev.delta.entities.TravelOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dev.delta.entities.Order;
 import com.dev.delta.repositories.OrderRepository;
 
 @Service
@@ -23,7 +23,7 @@ public class OrderService {
 	 * getOrders
 	 * @return
 	 */
-	public List<Order> getOrders()
+	public List<TravelOrder> getOrders()
 	{
 		return orderRepository.findAll();
 	}
@@ -39,11 +39,11 @@ public class OrderService {
 
 	/**
 	 * save
-	 * @param order
+	 * @param travelOrder
 	 */
-	public void save(Order order)
+	public void save(TravelOrder travelOrder)
 	{
-		orderRepository.save(order);
+		orderRepository.save(travelOrder);
 	}
 
     /**
@@ -51,7 +51,7 @@ public class OrderService {
      * @param id
      * @return
      */
-	public Optional<Order> findById(Long id) {
+	public Optional<TravelOrder> findById(Long id) {
 		return orderRepository.findById(id);
 	}
 

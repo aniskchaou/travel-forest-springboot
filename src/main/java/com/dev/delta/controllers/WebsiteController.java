@@ -47,4 +47,9 @@ public class WebsiteController {
 
 		return "dashboard/dashboard";
 	}
+
+	@GetMapping("/profile")
+	public String profile(Model model) {
+		return "profile/profile";
+	}
 }
