@@ -7,9 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.*;
 import org.hibernate.annotations.ManyToAny;
 
+@Table(name = "usserr")
 @Entity
 public class User {
 
